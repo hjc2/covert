@@ -36,13 +36,12 @@ def client_program():
 
         while receive_data:
             file.write(receive_data)
-            if 'EOF' in str(receive_data):
-                print("HOWDY HOWDY HOWDY")
-            print('EOF' in str(receive_data))
             receive_data = client_socket.recv(1024)
-
-        file.close()
-
+            if b'%EOF' in receive_data:
+                file.write(receive_data)
+                file.close()
+                break
+            
         extracted_data = pdfcovert.extract_data_from_pdf('file_'+ str(i)+".pdf")
         print(extracted_data)
 
