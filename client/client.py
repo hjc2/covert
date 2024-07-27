@@ -6,7 +6,7 @@ import pdfcovert
 
 def client_program():
     host = socket.gethostname()  # as both code is running on same pc
-    port = 7777  # socket server port number
+    port = 7826  # socket server port number
 
     client_socket = socket.socket()  # instantiate
     client_socket.connect((host, port))  # connect to the server
@@ -36,6 +36,9 @@ def client_program():
 
         while receive_data:
             file.write(receive_data)
+            if 'EOF' in str(receive_data):
+                print("HOWDY HOWDY HOWDY")
+            print('EOF' in str(receive_data))
             receive_data = client_socket.recv(1024)
 
         file.close()

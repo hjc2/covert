@@ -6,7 +6,7 @@ import pdfcovert
 def server_program():
     # get the hostname
     host = socket.gethostname()
-    port = 7777  # initiate port no above 1024
+    port = 7826 # initiate port no above 1024
 
     server_socket = socket.socket()  # get instance
     server_socket.bind((host, port))  # bind host address and port together
@@ -27,6 +27,9 @@ def server_program():
             file.write(receive_data)
             print(receive_data)
             receive_data = conn.recv(1024)
+            if b'%EOF' in receive_data:
+                file.write(receive_data)
+                break
         
         file.close()
 
@@ -41,7 +44,7 @@ def server_program():
 
         pdf = open("encrypted.pdf", "rb")
         send_data = pdf.read(1024)
-        while send_data:
+        while not send_data.__contains__('%%EOF'):
             conn.send(send_data)
             send_data = pdf.read(1024)
         
