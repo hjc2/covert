@@ -10,7 +10,12 @@
 2. **Steganography**: The encoder will hide your message as a zipped base 64 encoding into the Title field of the PDF.
 
 This tool is ideal for scenarios where covert data transmission is needed within environments where PDFs are frequently used, and provides a discreet method for sending information over a network.
-d
+
+# Dependencies
+1. `socket` for network communication
+2. `pypdf` for modifying and reading pdf files
+3. `zlib` for compression and decompression
+4. `base64` for encoding
 
 # Communication Protocol Setup
 
