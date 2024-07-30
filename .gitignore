@@ -1,0 +1,5 @@
+server/output.pdf
+server/file_*.pdf
+
+client/output.pdf
+client/file_*.pdf
